@@ -1,13 +1,13 @@
 version: '3'
 
 services:
-
+  server:
+    build: ./ecommercedjangobackend/.
+    command: python3 manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
   website:
     build: ./client/.
     ports:
       - "3000:3000"
 
-  server:
-    build: ./ecommercedjangobackend/.
-    ports:
-      - "8000:8000"
