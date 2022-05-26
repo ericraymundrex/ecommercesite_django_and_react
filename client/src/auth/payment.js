@@ -7,7 +7,7 @@ export const getToken = (userId, token) => {
     .then((response) => {
       return response.json();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err)); 
 };
 
 export const processPayment = (userId, token, paymentInfo) => {

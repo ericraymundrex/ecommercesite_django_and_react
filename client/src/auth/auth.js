@@ -1,7 +1,10 @@
 import { API } from "../backend";
 import { cartEmpty } from "../core/Cart/Cart";
-
+import axios from 'axios'
 export const signup = (user) => {
+
+  
+
   return fetch(`${API}user/`, {
     method: "POST",
     headers: {
@@ -20,17 +23,12 @@ export const signin = (user) => {
   const formData = new FormData();
 
   for (const name in user) {
-    console.log(user[name]);
     formData.append(name, user[name]);
   }
 
-  for (var key of formData.keys()) {
-    console.log("MYKEY: ", key);
-  }
 
   return fetch(`${API}user/login/`, {
     method: "POST",
-
     body: formData,
   })
     .then((response) => {
@@ -69,7 +67,7 @@ export const signout = (next) => {
     cartEmpty(() => {});
     //next();
 
-    return fetch(`${API}user/logout/${userId}`, {
+    return fetch(`${API}user/logout/${userId}/`, {
       method: "GET",
     })
       .then((response) => {

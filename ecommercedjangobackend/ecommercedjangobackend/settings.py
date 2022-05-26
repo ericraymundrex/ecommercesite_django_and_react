@@ -83,11 +83,22 @@ WSGI_APPLICATION = 'ecommercedjangobackend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
+# 
+# Master username
+# Master username
+# postgres
+# Master password
+# 80mEhAYjMdyeLL3oMP5l
+# database-1.c1p68gwyz9o7.ap-south-1.rds.amazonaws.com
+# database-1.c1p68gwyz9o7.ap-south-1.rds.amazonaws.com
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+       'NAME': 'database',
+       'USER': 'postgres',
+       'PASSWORD': '80mEhAYjMdyeLL3oMP5l',
+       'HOST': 'database-1.c1p68gwyz9o7.ap-south-1.rds.amazonaws.com',
+       'PORT': '5432',
     }
 }
 

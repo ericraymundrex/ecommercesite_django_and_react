@@ -19,6 +19,7 @@ const PaymentB = ({
     error: "",
     instance: {},
   });
+  const {success}=info
 
   const userId = isAuthenticated && isAuthenticated().user.id;
   const token = isAuthenticated && isAuthenticated().token;
@@ -31,12 +32,12 @@ const PaymentB = ({
             ...info,
             error: info.error,
           });
-          signout(() => {
-            // return <Redirect to="/" />;
-          });
+          // signout(() => {
+          //   // return <Redirect to="/" />;
+          // });
         } else {
           const clientToken = info.clientToken;
-          setInfo({ clientToken });
+          setInfo({...info, clientToken });
         }
       });
   };
@@ -117,11 +118,24 @@ const PaymentB = ({
         });
     });
   };
-
+  const successMessage = () => {
+    return (
+      <div className="row">
+        <div className="col-md-6 offset-sm-3 text-left">
+          <div
+            className="alert alert-success"
+            style={{ display: success ? "" : "none" }}
+          >
+            payment is successfully completed.
+          </div>
+        </div>
+      </div>
+    );
+  };
   const showbtnDropIn = () => {
     return (
       <div>
-       
+       {/* {successMessage()} */}
         {info.clientToken !== null && products.length > 0
           ? (
             <div>

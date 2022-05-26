@@ -12,11 +12,13 @@ const Signup=()=>{
         email:"",
         password:"",
         error:"",
-        success:false
+        success:false,
+        message:""
     })
 
-    const {name,email, password,error,success}=values
+    const {name,email, password,error,success,message}=values
     
+    //higher order function 
     const handlerChange=name=>event=>{
         setValues({...values,error:false,[name]:event.target.value})
     }
@@ -36,11 +38,12 @@ const Signup=()=>{
                     error:"",
                     success:true
                 })
-            }else{
+            }else if(data.email[0]==="user with this email already exists."){
                 setValues({
                     ...values,
                     error:true,
-                    success:false
+                    success:false,
+                    message:data.email[0]
                 })
             }
         }
@@ -55,19 +58,20 @@ const Signup=()=>{
                     <div className='alert alert-success'
                      style={{display:success?"":"none"}}>
                         Account created successfully <br/>
-                        <Link to="/singup">Login now.</Link>
+                        <Link to="/signin">Login now.</Link>
                     </div>
                 </div>
             </div>
         )
     }
-    const errorMessage=()=>{
+    const errorMessage=(message)=>{
         return(
             <div className='row'>
                 <div className='col-md-6 offset-sm-3 text-center'>
                     <div className='alert alert-danger'
                     style={{display:error?"":"none"}}>
-                        Check field again
+                        
+                        {message}
                     </div>
                 </div>
             </div>
@@ -78,7 +82,7 @@ const Signup=()=>{
         <Navbar />
         <div className='col-md-6 offset-sm-3 text-left pb-4'>
         {successMessage()}
-        {errorMessage()}
+        {errorMessage(message)}
             <label>Name</label>
             <input
                 className='form-control'

@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
-    name=models.CharField(max_length=50, default='Anonymous')
+    name=models.CharField(max_length=50, default='no name')
     email=models.EmailField(max_length=250,unique=True)
     username=None
     

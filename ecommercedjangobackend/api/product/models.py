@@ -1,7 +1,3 @@
-from distutils.command.upload import upload
-from email.mime import image
-from unicodedata import category
-from zipapp import create_archive
 from django.db import models
 from api.category.models import Category
 

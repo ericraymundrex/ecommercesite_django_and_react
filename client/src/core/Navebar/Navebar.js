@@ -8,7 +8,7 @@ const Navbar=()=>{
     return(
         <Fragment> 
             <div className="row pb-5">
-                <diV className="container">
+                <div className="container">
                 <ul className="nav nav-tabs">
                 <li className="nav-item">
                     <a className="nav-link" href="/">Home</a>
@@ -37,7 +37,7 @@ const Navbar=()=>{
 
                 
                 </ul>
-                </diV>
+                </div>
             </div>          
         </Fragment>
     )

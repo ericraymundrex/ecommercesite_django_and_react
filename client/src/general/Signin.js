@@ -12,37 +12,35 @@ const Signin = () => {
     password: "",
     error: "",
     success: false,
-    loading: false,
     didRedirect: false,
   });
-  const { name, email, password, error, success, loading, didRedirect } =values;
+  const { name, email, password, error, success, didRedirect } =values;
 
-  const handleChange = (name) =>
-    (event) => {
+  // higher order function -> Omchange
+  const handleChange = (name) =>{
+    return (event) => {
       setValues({ ...values, error: false, [name]: event.target.value });
-    };
+    }};
 
   const onSumit = (event) => {
     event.preventDefault();
-    setValues({ ...values, error: false, loading: true });
+    setValues({ ...values, error: false});
 
     signin({ email, password })
       .then((data) => {
         console.log("DATA", data);
         if (data.token) {
-          //let sessionToken = data.token;
           authenticate(data, () => {
-            console.log("TOKKEN ADDED");
+            console.log("TOKKEN ADDED");                                                                                                                                                                                                                                                                                                                                                               
             setValues({
               ...values,
-              didRedirect: true,
+              success:true
             });
           });
         } else {
           setValues({
             ...values,
-            loading: false,
-            
+            error:true
           });
         }
       })
@@ -55,15 +53,7 @@ const Signin = () => {
     }
   };
 
-  const loadingMessage = () => {
-    return (
-      loading && (
-        <div className="alert alert-info">
-          <h2>Loading...</h2>
-        </div>
-      )
-    );
-  };
+
 
   const successMessage = () => {
     return (
@@ -139,7 +129,8 @@ const Signin = () => {
   return (
     <Fragment>
       <Navbar />
-      {loadingMessage()}
+
+
         {errorMessage()}
         {successMessage()}
       {signInForm()}
